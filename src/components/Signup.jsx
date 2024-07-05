@@ -1,60 +1,75 @@
 import {  Button, TextField } from '@mui/material'
-import logo from "/public/side-img.jpg";
-import EmailIcon from '@mui/icons-material/Email';
-import LockIcon from '@mui/icons-material/Lock';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import logo from "/side-img.jpg";
+
+import { useState } from 'react';
 
 const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSubmit = () => {
+     if(password != confirmPassword) {
+
+     }
+  };
+
   return (
-    
-<div className='sign-up'>
+  <div className='sign-up'>
     <div className='image-con'>
       <img src={logo} alt="LOGO" />
     </div>
 
     <div className='sign-up-box'>
-    <p>Sign Up !</p>
+    <p>Signup !</p>
+    <p className='text'>Please enter your details to create your account</p>
+
     <TextField 
-     label="Filled success" 
+     id="outlined-basic"
      color="success" 
-     focused
-     placeholder='Enter Name'
-     InputProps={{
-      startAdornment: <AccountCircleIcon />,
-      className: 'icons',
-    }}
+     label='Enter Name'
+     fullWidth
+     
     />
     <TextField 
-     label="Filled success" 
+     id="outlined-basic"
      color="success" 
-     focused
-     placeholder='Enter Email'
-     InputProps={{
-      startAdornment: <EmailIcon />,
-      className: 'icons',
-    }}
+     label='Enter Email'
+     value={email}
+     onChange={(e) => setEmail(e.target.value)}
+     fullWidth
     />
     <TextField
-     label="Filled success" 
+     id="outlined-basic"
      color="success" 
-     focused
-     placeholder='Enter Password'
-     InputProps={{
-      startAdornment: <LockIcon />,
-      className: 'icons',
-    }}
+     type="password"
+     autoComplete="current-password"
+     label='Enter Password'
+     value={password}
+     onChange={(e) => setPassword(e.target.value)}
+     fullWidth
+     
     />
     <TextField
-    label="Filled success" 
-    color="success" 
-    focused
-     placeholder='Retype Password'
-     InputProps={{
-      startAdornment: <LockIcon />,
-      className: 'icons',
-    }}
+     id="outlined-basic"
+     color="success" 
+     type="password"
+     autoComplete="current-password"
+     label='Retype Password'
+     value={confirmPassword}
+     onChange={(e) => setConfirmPassword(e.target.value)}
+     fullWidth
+    
     />
-     <Button variant="contained" fullWidth>Sign Up</Button>
+     <Button 
+     variant="contained" 
+     fullWidth
+     onClick={handleSubmit}
+     >
+      Sign Up
+      </Button>
+    <p className='text'>Or Signup with</p>
+
     </div>
 </div>
   )

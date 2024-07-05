@@ -34,6 +34,14 @@ main{
 
 }
 
+.log-in{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+
+}
+
 .image-con {
   flex: 0.5;
   border-radius: 50px;
@@ -56,18 +64,40 @@ main{
   font-weight: 500;
 }
 
-#outlined-basic{
+.log-in-box {
+  display: flex;
+  flex: 0.5;
+  flex-direction: column;
+  justify-content: end;
+  align-items:center ;
+  font-weight: bolder;
+  gap: 15px;
+  margin-bottom: 60px;
+  margin-left: 40px;
+  padding: 70px;
+  font-size: 30px;
+  color: blue;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+}
+
+/* #outlined-basic{
   height: 0.8vh;
   width: 20vw;
   border-radius: 40px;
   border: none;
-}
+} */
 
 #outlined-basic:hover {
   border: none;
 }
 
 .icons {
-  color: grey;
+  color: rgb(67, 66, 66);
   padding: 10px;
+}
+
+.text {
+  color: rgb(148, 139, 139);
+  font-size: small;
 }
