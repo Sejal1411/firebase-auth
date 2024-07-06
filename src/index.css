@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   height: 100dvh !important;
-  background-color: aquamarine;
+  background-color: white;
   justify-content: center;
   align-items: center;
 }
@@ -81,12 +81,12 @@ main{
   font-weight: 500;
 }
 
-/* #outlined-basic{
-  height: 0.8vh;
+#outlined-basic{
+  height: 3vh;
   width: 20vw;
   border-radius: 40px;
   border: none;
-} */
+}
 
 #outlined-basic:hover {
   border: none;

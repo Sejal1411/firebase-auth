@@ -1,6 +1,7 @@
 import {  Button, TextField } from '@mui/material'
-import logo from "/public/side-img.jpg";
 import { useState } from 'react';
+import logo from "/side-img.jpg";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -39,7 +40,7 @@ const Login = () => {
      <Button 
      variant="contained" 
      fullWidth
-     onClick={handleSubmit}
+    //  onClick={handleSubmit}
      > 
      Login
      </Button>
