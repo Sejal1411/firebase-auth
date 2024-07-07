@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider, getAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -8,13 +9,14 @@ const firebaseConfig = {
   projectId: "fir-auth-31a8d",
   storageBucket: "fir-auth-31a8d.appspot.com",
   messagingSenderId: "107699818614",
-  appId: "1:107699818614:web:aac4ce0009efc489164f57"
+  appId: "1:107699818614:web:aac4ce0009efc489164f57",
+  databaseURL: 'https://fir-auth-31a8d-default-rtdb.firebaseio.com'
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth();
-export const googleAuthProvider = new GoogleAuthProvider();
+export const db = getFirestore(app);
 
 export default app;

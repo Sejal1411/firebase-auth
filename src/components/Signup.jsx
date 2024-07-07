@@ -1,26 +1,54 @@
 import {  Button, TextField } from '@mui/material'
 import logo from "/side-img.jpg";
 import { useState } from 'react';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth } from '../Firebase';
+import { Link,  useNavigate } from 'react-router-dom';
+
 
 const Signup = () => {
-  const [user, setUser] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    pass: "",
+  });
 
-  // const handleSubmit = () => {
-  //    if(password != confirmPassword) {
+  const [errorMsg, setErrorMsg] = useState("");
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
 
-  //    }
-  // };
+  const handleSubmit = () => {
+    if(!values.name || !values.email || !values.pass) {
+      setErrorMsg("Please fill all the fields*");
+      return;
+    }
+    setErrorMsg("");
+
+    setSubmitButtonDisabled(true);
+    createUserWithEmailAndPassword(auth, values.email, values.pass).
+    then(async(res) => {
+      setSubmitButtonDisabled(false);
+      const user = req.user;
+      await updateProfile(user, {
+        displayName: values.name,
+      }); 
+      navigate("/");
+    })
+    .catch((err) => {
+      setSubmitButtonDisabled(false);
+      setErrorMsg(err.message);
+});
+      
+  };
 
   return (
+
   <div className='sign-up'>
     <div className='image-con'>
       <img src={logo} alt="LOGO" />
     </div>
 
-   <div className='sign-up-box'>
+    <div className='sign-up-box'>
      <p>Signup !</p>
      <p className='text'>Please enter your details to create your account</p>
 
@@ -28,17 +56,18 @@ const Signup = () => {
      id="outlined-basic"
      color="success" 
      label='Enter Name'
-     value={user}
-     onChange={(e) => setUser(e.target.value)}
+    //  value={name}
+     onChange={(e) => setValues((prev) => ({ ...prev, name: e.target.value }))
+    }
      fullWidth
-
-    />
+     />
     <TextField 
      id="outlined-basic"
      color="success" 
      label='Enter Email'
-     value={email}
-     onChange={(e) => setEmail(e.target.value)}
+    //  value={email}
+     onChange={(e) => setValues((prev) => ({ ...prev, email: e.target.value }))
+    }
      fullWidth
     />
     <TextField
@@ -47,30 +76,31 @@ const Signup = () => {
      type="password"
      autoComplete="current-password"
      label='Enter Password'
-     value={password}
-     onChange={(e) => setPassword(e.target.value)}
+    //  value={password}
+     onChange={(e) => setValues((prev) => ({ ...prev, pass: e.target.value }))
+    }
      fullWidth
-     
-    />
-    <TextField
-     id="outlined-basic"
-     color="success" 
-     type="password"
-     autoComplete="current-password"
-     label='Retype Password'
-     value={confirmPassword}
-     onChange={(e) => setConfirmPassword(e.target.value)}
-     fullWidth
+     />
     
-    />
-     <Button 
+    
+    <b style={{ color: 'red', fontSize: '14px' }}>{errorMsg}</b>
+    
+    <Button 
+     className='button'
      variant="contained" 
      fullWidth
-    //  onClick={handleSubmit}
-     >
+     onClick={handleSubmit}
+     disabled = {submitButtonDisabled}
+    >
       Sign Up
-      </Button>
-    <p className='text'>Or Signup with</p>
+    </Button>
+    <p className='text'>Already have a account?{" "}
+       <span>
+        <Link to="/login">Login</Link>
+       </span>
+    </p>
+    <p style={{color: 'black', fontSize: '14px'}}>OR</p>
+    <p className='text'>Signup with</p>
 
     </div>
 </div>
