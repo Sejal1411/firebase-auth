@@ -3,8 +3,8 @@ import logo from "/side-img.jpg";
 import { useState } from 'react';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../Firebase';
-import { Link,  useNavigate } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import logo2 from "/search.png";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -25,18 +25,20 @@ const Signup = () => {
     setErrorMsg("");
 
     setSubmitButtonDisabled(true);
-    createUserWithEmailAndPassword(auth, values.email, values.pass).
-    then(async(res) => {
+    createUserWithEmailAndPassword(auth, values.email, values.pass)
+    .then(async(res) => {
       setSubmitButtonDisabled(false);
-      const user = req.user;
+      const user = res.user;
       await updateProfile(user, {
         displayName: values.name,
       }); 
       navigate("/");
+      // console.log(user);
     })
     .catch((err) => {
       setSubmitButtonDisabled(false);
       setErrorMsg(err.message);
+      console.log("Error-", err.message)
 });
       
   };
@@ -82,7 +84,6 @@ const Signup = () => {
      fullWidth
      />
     
-    
     <b style={{ color: 'red', fontSize: '14px' }}>{errorMsg}</b>
     
     <Button 
@@ -94,15 +95,12 @@ const Signup = () => {
     >
       Sign Up
     </Button>
-    <p className='text'>Already have a account?{" "}
+    <p className='text'>Already have an account?{" "}
        <span>
-        <Link to="/login">Login</Link>
+        <Link to="/app/login">Login</Link>
        </span>
     </p>
-    <p style={{color: 'black', fontSize: '14px'}}>OR</p>
-    <p className='text'>Signup with</p>
-
-    </div>
+  </div>
 </div>
   )
 }

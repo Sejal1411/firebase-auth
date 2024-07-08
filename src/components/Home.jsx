@@ -22,7 +22,7 @@ const Home = (props) => {
     </div>
 
     <br />
-    
+
     <div>
     <Link to="/app/login" style={{ textDecoration: 'none' }}>
     <Button 
@@ -33,10 +33,9 @@ const Home = (props) => {
     </Button>
     </Link>
     </div>
-    
+
     <h2>{props.name ? `Welcome - ${props.name}` : "Login please"}</h2>
     
-   
    </div>
   )
 }

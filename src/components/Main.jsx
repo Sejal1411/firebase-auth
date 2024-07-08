@@ -9,7 +9,7 @@ const Main = () => {
       {/* <Home /> */}
       {/* <Login /> */}
       <Outlet />
-      <Signup />
+      {/* <Signup /> */}
 
 
     </main>
