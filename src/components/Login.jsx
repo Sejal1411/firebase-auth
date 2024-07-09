@@ -1,7 +1,7 @@
 import {  Button, TextField } from '@mui/material';
 import { useState } from 'react';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { auth, signInWithGoogle } from '../Firebase';
+import { auth, provider } from '../Firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from "/side-img.jpg";
 import logo2 from "/search.png";
@@ -29,15 +29,30 @@ const Login = () => {
     .then(async(res) => {
       setSubmitButtonDisabled(false);
       navigate("/")
-      // console.log(user);
+      console.log(user);
     })
     .catch((err) => {
       setSubmitButtonDisabled(false);
       setErrorMsg(err.message);
       console.log("Error-", err.message)
      });
+  }
 
-    }
+  const signInWithGoogle =  () => {
+    signInWithPopup(auth,provider)
+     .then((result) => {
+      const name = result.user.displayName;
+      const email = result.user.email;
+      const profilePic = result.user.photoURL;
+  
+      localStorage.setItem("name", name)
+      localStorage.setItem("email", email)
+      localStorage.setItem("profilePic", profilePic);
+      navigate('/app/profile');
+    })
+     .catch((error) => {
+      console.error('Error signing in with Google', error);     });
+    };
 
   return (
        
@@ -79,7 +94,7 @@ const Login = () => {
     > 
      Login
     </Button>
-
+    
     <p className='text'>Not Registered? Create an account{" "}
       <span>
         <Link to="/app/signup">Signup</Link>
@@ -90,7 +105,7 @@ const Login = () => {
 
     <Button 
      className='button1'
-     variant="outlined" 
+     variant="text" 
      onClick={signInWithGoogle}
     >
      <img src={logo2}  alt="LOGO" />

@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../Firebase';
 import { Link, useNavigate } from 'react-router-dom';
-import logo2 from "/search.png";
 
 const Signup = () => {
   const navigate = useNavigate();

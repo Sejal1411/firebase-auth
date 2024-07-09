@@ -1,6 +1,7 @@
 import Signup from './components/Signup'
 import Login from './components/Login'
 import Main from './components/Main'
+import Profile from './components/Profile'
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import { useEffect, useState } from 'react';
@@ -23,6 +24,8 @@ function App() {
       <Route path="app" element={<Main />}>
        <Route path="signup" element={<Signup />}></Route>
        <Route path="login" element={<Login />}></Route>
+       <Route path="profile" element={<Profile />}></Route>
+
       </Route>
       {/* <Signup /> */}
     </Routes>
