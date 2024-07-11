@@ -1,4 +1,14 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 * {
+  box-sizing: inherit;
+}
+
+.app-bar {
   margin: 0;
   padding: 0;
 }
@@ -10,12 +20,14 @@
   background-color: plum;
   justify-content: center;
   align-items: center;
+  margin-top: 35px;
 }
 
 main{
+  position: relative;
   display: flex;
-  width: 80%;
-  height: 80%;
+  width: 70%;
+  height: 70%;
   background-color: white;
   padding: 1rem;
   justify-content: baseline;
@@ -120,6 +132,9 @@ main{
 
 .profile{
   display: flex;
+  position: absolute;
+  top: 20%;
+  left: 28%;
   flex-direction: column;
   justify-content: center; /* Horizontal center */
   align-items: center; 

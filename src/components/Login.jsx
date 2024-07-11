@@ -87,6 +87,7 @@ const Login = () => {
     <b style={{ color: 'red', fontSize: '14px' }}>{errorMsg}</b>
 
     <Button 
+     className='button'
      variant="contained" 
      fullWidth
      onClick={handleSubmit}

@@ -15,7 +15,7 @@ const Profile = () => {
       await auth.signOut();
       localStorage.removeItem("user");
       navigate("/app/login");
-      console.log("User logged out successfully!");
+      toast.success("User logged out successfully!");
     } catch (error) {
       console.error("Error logging out:", error.message);
     }
